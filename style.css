@@ -21,7 +21,7 @@ body {
   background-image: url("images/home.PNG");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: center;
+  background-position: center center; /* Center the image */
 }
 
 #skills i {
