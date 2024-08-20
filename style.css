@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;500;800&display=swap');
+
 /* Color variables */
 :root {
   --white-color: #fff;
@@ -13,15 +15,6 @@ body {
 /* Changing link color */
 .nav-item .nav-link {
   color: var(--white-color);
-}
-
-/* Hero section background image */
-.hero {
-  height: 100vh;
-  background-image: url("images/home.PNG");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center; /* Center the image */
 }
 
 #skills i {
@@ -103,4 +96,84 @@ footer .social-icons a {
 
 .social-icons li {
   display: inline; /* Ensure list items are inline for horizontal alignment */
+}
+
+
+
+a {
+    text-decoration: none;
+}
+
+#main-content {
+    height: 85vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: white;
+    transition: .4s;
+
+}
+
+.v-center {
+    margin: 0; 
+    position: relative; 
+    top: 50%; left: 50%; 
+    -ms-transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
+}
+
+.overlay-fade {
+    height: 100%;
+    width: 100%;
+    transition: .4s;
+}
+
+#shifter-text {
+  margin-top: 100px;
+    background-color: #212529;
+    color: white;
+    transition: .4s;
+    border-radius: 2%;
+}
+
+.name {
+    color: #8b9bcb;
+    font-weight: bold;
+}
+
+.name-header {
+    font-size: 95px;
+    line-height: 80px;
+}
+
+.shifter-color {
+    color: white;
+    transition: .5s;
+}
+
+.font-karla {
+    font-family: 'Karla';
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 48px;
+}
+
+@media screen and (max-width: 990px) {
+    .name-header {
+        font-size: 60px;
+        line-height: 60px;
+    }
+    .font-karla {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+
+#myPicture {
+  margin-top: 10px;
+  width: 300px; /* Adjust size as needed */
+  height: 300px; /* Adjust size as needed */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #8b9bcb; /* Optional: Add a border */
 }
