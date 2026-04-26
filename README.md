@@ -13,7 +13,7 @@ Project Management: Excel, VBA
 Feel free to reach out to me for any inquiries or collaborations!  
 **GitHub:** [Huzaifa Farhan](https://github.com/Huzaifa-Farhan)  
 **LinkedIn:** [Huzaifa Farhan](https://www.linkedin.com/in/huzaifafarhan17/)  
-**Email:** [huzaifa.farhan042@example.com](mailto:huzaifa.farhan042@example.com)  
+**Email:** [huzaifa.farhan042@gmail.com](mailto:huzaifa.farhan042@gmail.com)  
 
 
 **Thank you for visiting my portfolio!**
