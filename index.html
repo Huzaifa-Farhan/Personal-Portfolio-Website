@@ -2,280 +2,905 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Huzaifa Farhan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #060a0f;
+      --surface: #0b1017;
+      --border:  #1a2535;
+      --border2: #243040;
+      --accent:  #f5a623;
+      --accent2: #ff6b1a;
+      --glow:    #f5a62355;
+      --teal:    #00c8a0;
+      --text:    #e8edf5;
+      --muted:   #5a6a80;
+      --card:    #0d1520;
+    }
 
-  <link rel="stylesheet" href="style.css" />
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+    }
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 4px);
+      z-index: 9999;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(6,10,15,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .nav-logo-icon {
+      display: inline-block;
+      font-size: 1.2rem;
+      animation: spin 8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,0.055) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .atom-rings {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      pointer-events: none;
+    }
+
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .ring-1 { width: 200px; height: 200px; border: 1px solid rgba(245,166,35,0.3); animation: orbit 12s linear infinite; }
+    .ring-2 { width: 340px; height: 340px; border: 1px solid rgba(245,166,35,0.18); animation: orbit 18s linear infinite reverse; }
+    .ring-3 { width: 490px; height: 490px; border: 1px solid rgba(245,166,35,0.09); animation: orbit 24s linear infinite; }
+
+    .ring::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      top: -4px; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px var(--glow);
+    }
+
+    .ring-2::after { background: var(--accent2); box-shadow: 0 0 12px var(--accent2); }
+    .ring-3::after { background: var(--teal); box-shadow: 0 0 12px var(--teal); width: 6px; height: 6px; top: -3px; }
+
+    .atom-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px; height: 22px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent), 0 0 60px var(--glow), 0 0 100px rgba(245,166,35,0.15);
+      animation: corePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes orbit { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes corePulse {
+      0%, 100% { box-shadow: 0 0 20px var(--accent), 0 0 60px var(--glow); }
+      50% { box-shadow: 0 0 30px var(--accent), 0 0 90px var(--glow); }
+    }
+
+    .hero-ambience {
+      position: absolute;
+      bottom: -200px; left: -150px;
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; max-width: 700px; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(245,166,35,0.06);
+      border: 1px solid rgba(245,166,35,0.3);
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: blink 2s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+    .hero-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 7vw, 6.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name .accent { color: var(--accent); text-shadow: 0 0 40px rgba(245,166,35,0.35); }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #060a0f;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(245,166,35,0.25);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      outline: 1px solid var(--accent);
+      box-shadow: 0 0 30px rgba(245,166,35,0.35);
+    }
+
+    .btn-ghost { background: transparent; color: var(--text); outline: 1px solid var(--border2); }
+    .btn-ghost:hover { outline-color: var(--muted); }
+
+    .hero-readout {
+      position: absolute;
+      bottom: 2.5rem; left: 2.5rem;
+      display: flex; align-items: center; gap: 1.8rem;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+
+    .readout-item { display: flex; align-items: center; gap: 0.4rem; }
+
+    .rdot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal);
+      animation: blink 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .rdot.o { background: var(--accent); box-shadow: 0 0 6px var(--accent); animation-delay: 0.8s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::before { content: '//'; opacity: 0.5; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border2), transparent); max-width: 120px; }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border2) 30%, var(--border2) 70%, transparent);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ABOUT */
+    #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+    .about-text p { color: #8a9ab5; line-height: 1.9; font-size: 0.88rem; margin-bottom: 1.2rem; }
+    .about-text p strong { color: var(--accent); font-weight: 400; }
+
+    .gauge-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .gauge-header { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .gauge-header span:last-child { color: var(--accent); }
+    .gauge-track { height: 5px; background: var(--border); overflow: hidden; }
+    .gauge-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); box-shadow: 0 0 10px rgba(245,166,35,0.4); width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+
+    .skill-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-item:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); border-left-color: var(--accent2); }
+
+    .skill-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .skill-name { font-family: 'Orbitron', sans-serif; font-weight: 600; font-size: 0.72rem; margin-bottom: 0.35rem; letter-spacing: 0.05em; }
+    .skill-desc { font-size: 0.7rem; color: var(--muted); line-height: 1.5; }
+
+    .stats-row { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 2.2rem; color: var(--accent); line-height: 1; text-shadow: 0 0 20px rgba(245,166,35,0.35); }
+    .stat-label { font-size: 0.62rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover::before { transform: scaleY(1); }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 18px; height: 18px;
+      border-bottom: 1px solid var(--border2);
+      border-right: 1px solid var(--border2);
+    }
+
+    .project-num { font-family: 'Orbitron', sans-serif; font-size: 2.8rem; font-weight: 900; color: rgba(245,166,35,0.07); line-height: 1; margin-bottom: 1rem; }
+    .project-card:hover .project-num { color: rgba(245,166,35,0.12); }
+    .project-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .project-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tag { background: rgba(245,166,35,0.06); color: var(--accent); border: 1px solid rgba(245,166,35,0.2); padding: 0.2rem 0.6rem; font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .project-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.75rem; text-decoration: none; transition: color 0.2s; }
+    .project-link:hover { color: var(--teal); }
+
+    /* CONTACT */
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info p { color: var(--muted); font-size: 0.85rem; line-height: 1.85; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      color: var(--text); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.05em;
+      padding: 1rem 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .contact-link::after { content: '›'; position: absolute; right: 1.2rem; color: var(--muted); transition: color 0.2s, right 0.2s; }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(245,166,35,0.05); }
+    .contact-link:hover::after { color: var(--accent); right: 1rem; }
+    .contact-link-icon { font-size: 1.1rem; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 12px rgba(245,166,35,0.12); }
+    .form-group textarea { min-height: 130px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-icon { color: var(--accent); font-size: 0.9rem; animation: spin 8s linear infinite; display: inline-block; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        height: 100vh; width: 260px;
+        background: var(--surface);
+        border-left: 1px solid var(--border);
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem; gap: 2rem;
+        transition: right 0.3s ease;
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1rem; }
+      .nav-toggle { display: flex; }
+      #hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-row { gap: 2rem; }
+      .atom-rings { display: none; }
+      nav { padding: 1rem 1.5rem; }
+      .hero-readout { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .btn { justify-content: center; }
+      .stats-row { flex-wrap: wrap; gap: 1.5rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<header class="fixed-top">
-  <nav class="container navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand fw-bold">Huzaifa Farhan</a>
+<nav>
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-icon">☢</span> CORE.SYS
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="nav" class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#skills">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
-
-<!-- HERO -->
 <section id="hero">
-  <div class="container">
-    <div class="row align-items-center">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-ambience"></div>
 
-      <div class="col-lg-6 text-center text-lg-start">
-        <h1 class="hero-title">Hi, I'm <span>Huzaifa Farhan</span></h1>
+  <div class="atom-rings">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+    <div class="atom-core"></div>
+  </div>
 
-        <p class="hero-subtitle">
-          Software Engineering Student building clean, user-focused applications.
-        </p>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Software Intern @ Ontario Power Generation
+    </div>
+    <h1 class="hero-name">
+      Software<br />
+      <span class="accent">Engineer</span>
+    </h1>
+    <p class="hero-sub">
+      OntarioTech University · Currently interning at OPG with the M&D Center
+      Final year ahead — then eyes set on energy tech or fintech.
+      Built to solve hard problems with precision, leadership, and code that holds up.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View My Work &rarr;</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
 
-        <div class="mt-4">
-          <a href="#skills" class="btn btn-primary me-3">About Me</a>
-          <a href="#portfolio" class="btn btn-outline-primary">Projects</a>
+  <div class="hero-readout">
+    <div class="readout-item"><span class="rdot"></span>OPG Intern — Active</div>
+    <div class="readout-item"><span class="rdot o"></span>Energy · Fintech</div>
+    <div class="readout-item"><span class="rdot"></span>OntarioTech · Final Year</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="about">
+  <div class="section-label">01 — Who I Am</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Software Engineering student at OntarioTech University</strong>, currently interning at <strong>Ontario Power Generation (OPG)</strong> — one of Canada's largest power producers — where I'm getting firsthand experience applying software engineering in a high-stakes, safety-critical environment.
+      </p>
+      <p>
+        After my internship wraps up, I head back to finish my <strong>final year at OntarioTech</strong>, with the goal of returning to OPG full-time or pivoting into the <strong>fintech space</strong> — two industries that both demand the same thing: reliable, precision-built software that performs when it matters most.
+      </p>
+      <p>
+        I thrive on hard problems. Whether it's debugging complex systems at a nuclear facility or architecting financial software that can't fail, I bring the same engineering mindset — methodical, rigorous, and built for high standards.
+      </p>
+      <div class="stats-row">
+        <div><div class="stat-num">4+</div><div class="stat-label">Yrs Coding</div></div>
+        <div><div class="stat-num">11</div><div class="stat-label">Projects</div></div>
+        <div><div class="stat-num">0</div><div class="stat-label">Incidents</div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="gauge-list">
+        <div class="gauge-item">
+          <div class="gauge-header"><span>Systems Thinking</span><span>92%</span></div>
+          <div class="gauge-track"><div class="gauge-fill" data-width="92"></div></div>
         </div>
-
-        <div class="social-icons mt-4">
-          <a href="https://github.com/Huzaifa-Farhan"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/huzaifafarhan17/"><i class="fab fa-linkedin"></i></a>
-          <a href="images/Main Resume.pdf"><i class="fa fa-file"></i></a>
+        <div class="gauge-item">
+          <div class="gauge-header"><span>Full-Stack Dev</span><span>85%</span></div>
+          <div class="gauge-track"><div class="gauge-fill" data-width="85"></div></div>
+        </div>
+        <div class="gauge-item">
+          <div class="gauge-header"><span>Troubleshooting</span><span>95%</span></div>
+          <div class="gauge-track"><div class="gauge-fill" data-width="95"></div></div>
+        </div>
+        <div class="gauge-item">
+          <div class="gauge-header"><span>Leadership</span><span>80%</span></div>
+          <div class="gauge-track"><div class="gauge-fill" data-width="80"></div></div>
+        </div>
+        <div class="gauge-item">
+          <div class="gauge-header"><span>Critical Thinking</span><span>90%</span></div>
+          <div class="gauge-track"><div class="gauge-fill" data-width="90"></div></div>
         </div>
       </div>
 
-      <div class="col-lg-6 text-center mt-5 mt-lg-0">
-        <img src="images/home.PNG" class="hero-img">
+      <div class="skills-grid">
+        <div class="skill-item">
+          <div class="skill-icon">⚡</div>
+          <div class="skill-name">OPG / Energy Tech</div>
+          <div class="skill-desc">Interning at Ontario Power Generation in a safety-critical software environment</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">💹</div>
+          <div class="skill-name">Fintech Ambitions</div>
+          <div class="skill-desc">Targeting financial software — where reliability and precision are non-negotiable</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">💻</div>
+          <div class="skill-name">Full-Stack Dev</div>
+          <div class="skill-desc">Building complete solutions from frontend to backend</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon">🔍</div>
+          <div class="skill-name">Troubleshooting</div>
+          <div class="skill-desc">Advanced diagnostics across complex systems</div>
+        </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="skills" class="container text-center">
-  <h2>About Me</h2>
-  <p class="subtitle">
-    Software Engineering student at OntarioTech University with experience in development, problem-solving, and teamwork.
-  </p>
+<div class="section-divider"></div>
 
-  <div class="row mt-5">
-    <div class="col-md-4">
-      <div class="card p-4">
-        <i class="fa fa-code icon"></i>
-        <h4>Frontend</h4>
-        <p>HTML, CSS, JavaScript, React</p>
+<section id="projects">
+  <div class="section-label">02 — What I've Built</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Dijkstra's Pathfinding Visualizer</div>
+      <p class="project-desc">An interactive visualizer for Dijkstra's pathfinding algorithm, demonstrating shortest-path traversal across a dynamic grid in real time.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Pathfinding-Visualizer" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://pathfinding-visualizer-gcim.onrender.com/" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="card p-4">
-        <i class="fa fa-server icon"></i>
-        <h4>Backend</h4>
-        <p>Python, Java, C++, MySQL</p>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Typing Game</div>
+      <p class="project-desc">A fast-paced typing speed game that tests accuracy and WPM with randomized prompts and real-time feedback.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Typing-Game" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://typing-game-hhiq.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="card p-4">
-        <i class="fa fa-users icon"></i>
-        <h4>Leadership</h4>
-        <p>Project management & teamwork</p>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">Weather App</div>
+      <p class="project-desc">A clean weather application that fetches live forecast data by location using a public weather API with dynamic UI updates.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="portfolio" class="container text-center">
-  <h2>Projects</h2>
-  <p class="subtitle">A collection of projects I have worked on.</p>
-
-  <div class="row mt-5 g-4">
-
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/pathfinding.png">
-        <h6>Dijkstra's Pathfinding Visualizer</h6>
-        <p>HTML - NodeJS - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Pathfinding-Visualizer" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://pathfinding-visualizer-gcim.onrender.com/" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Weather-App" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://weather-app-hbqs.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/typing.PNG">
-        <h6>Typing Game</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Typing-Game" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://typing-game-hhiq.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-title">Chess Game</div>
+      <p class="project-desc">A fully functional two-player chess game built from scratch with move validation, check detection, and turn-based logic.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Chess-Game" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://chess-game-6grn.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/weatherApp.PNG">
-        <h6>Weather App</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Weather-App" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://weather-app-hbqs.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-title">Sudoku Solver</div>
+      <p class="project-desc">An automated Sudoku solver using a backtracking algorithm that efficiently fills in valid solutions for any given puzzle.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Sudoku-Solver" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://drive.google.com/file/d/1k1bFonletMLnLeIWIxTgQhRBPQfOBnhA/view" target="_blank" class="project-link">Demo &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/chess.PNG">
-        <h6>Chess Game</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Chess-Game" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://chess-game-6grn.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <div class="project-title">Arduino Temperature Tester</div>
+      <p class="project-desc">A hardware-software integration project using an Arduino sensor to log and visualize real-time temperature data via Python.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Arduino</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Arduino-Temp-Test" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://drive.google.com/file/d/1OjMVCzuW2jWsTvXbtHIr9YmcC_zr1NG1/view" target="_blank" class="project-link">Demo &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/sudoku.png">
-        <h6>Sudoku Solver</h6>
-        <p>Python</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Sudoku-Solver" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://drive.google.com/file/d/1k1bFonletMLnLeIWIxTgQhRBPQfOBnhA/view" class="btn btn-outline-primary btn-sm">Demo</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">07</div>
+      <div class="project-title">Image To Text</div>
+      <p class="project-desc">An OCR tool that extracts and outputs readable text from image files using Python's vision processing libraries.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Image-To-Text" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://drive.google.com/file/d/1DQQ-ideIyoLKBGpqecO8Vv907XBnKz5C/view" target="_blank" class="project-link">Demo &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/arduino.PNG">
-        <h6>Arduino Temperature Tester</h6>
-        <p>Python - Arduino</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Arduino-Temp-Test" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://drive.google.com/file/d/1OjMVCzuW2jWsTvXbtHIr9YmcC_zr1NG1/view" class="btn btn-outline-primary btn-sm">Demo</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">08</div>
+      <div class="project-title">Ping Pong Game</div>
+      <p class="project-desc">A classic Pong arcade game with smooth paddle physics, score tracking, and increasing ball speed as the match progresses.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Ping-Pong" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://ping-pong-ttwz.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/imagetotext.PNG">
-        <h6>Image To Text</h6>
-        <p>Python</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Image-To-Text" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://drive.google.com/file/d/1DQQ-ideIyoLKBGpqecO8Vv907XBnKz5C/view" class="btn btn-outline-primary btn-sm">Demo</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">09</div>
+      <div class="project-title">Sliding Puzzle Game</div>
+      <p class="project-desc">A tile-based sliding puzzle game where players rearrange numbered tiles to reach the correct order with move counting.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Sliding-Puzzle-Game" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://sliding-puzzle-game.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/pingpong.PNG">
-        <h6>Ping Pong Game</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Ping-Pong" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://ping-pong-ttwz.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">10</div>
+      <div class="project-title">Web Scraper</div>
+      <p class="project-desc">A Python script that automatically scrapes, parses, and exports structured data from websites into a spreadsheet format.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+      </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/Web-Scraper" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://drive.google.com/file/d/1P_VAKDkQ-cuwscxOBTzJwJav8I0nay1n/view" target="_blank" class="project-link">Demo &rarr;</a>
       </div>
     </div>
 
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/sliding.PNG">
-        <h6>Sliding Puzzle Game</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Sliding-Puzzle-Game" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://sliding-puzzle-game.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+    <div class="project-card">
+      <div class="project-num">11</div>
+      <div class="project-title">To-Do List App</div>
+      <p class="project-desc">A clean, persistent to-do list app with add, complete, and delete functionality — keeping tasks organized with a minimal UI.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
       </div>
-    </div>
-
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/excel.PNG">
-        <h6>Web Scraper</h6>
-        <p>Python</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/Web-Scraper" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://drive.google.com/file/d/1P_VAKDkQ-cuwscxOBTzJwJav8I0nay1n/view" class="btn btn-outline-primary btn-sm">Demo</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT -->
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card p-3 h-100">
-        <img src="images/todo.PNG">
-        <h6>To-Do List App</h6>
-        <p>HTML - CSS - JavaScript</p>
-        <div>
-          <a href="https://github.com/Huzaifa-Farhan/To-Do-List" class="btn btn-primary btn-sm">GitHub</a>
-          <a href="https://to-do-list-3pes.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
-        </div>
+      <div style="display:flex; gap:1rem;">
+        <a href="https://github.com/Huzaifa-Farhan/To-Do-List" target="_blank" class="project-link">GitHub &rarr;</a>
+        <a href="https://to-do-list-3pes.onrender.com" target="_blank" class="project-link">Live &rarr;</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="text-center">
-  <h2>Contact Me</h2>
+<div class="section-divider"></div>
 
-  <form action="https://formspree.io/f/mvgpqepa" method="POST" class="container mt-4">
-
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <input type="text" name="name" placeholder="Name" class="form-control" required>
-      </div>
-
-      <div class="col-md-6 mb-3">
-        <input type="email" name="email" placeholder="Email" class="form-control" required>
+<section id="contact">
+  <div class="section-label">03 — Let's Talk</div>
+  <h2 class="section-title">Contact Me</h2>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <p>
+        Currently interning at OPG with the M&D Center. Heading back to finish my final year at OntarioTech. Open to conversations about returning to the energy sector or breaking into fintech after graduation. If you've got an opportunity that fits, let's talk.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:huzaifa.farhan042@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span> huzaifa.farhan042@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/huzaifafarhan17/" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🔗</span> LinkedIn Profile
+        </a>
+        <a href="https://github.com/Huzaifa-Farhan" target="_blank" class="contact-link">
+          <span class="contact-link-icon">🐙</span> GitHub Profile
+        </a>
+        <a href= "assets/resume.pdf" class="contact-link">
+          <span class="contact-link-icon">📄</span> Download Resume
+        </a>
       </div>
     </div>
 
-    <textarea name="message" placeholder="Message" class="form-control mb-3" required></textarea>
-
-    <button class="btn btn-primary">Send</button>
-  </form>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="What's the mission?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Transmit Message &rarr;</button>
+    </form>
+  </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<footer>
+  <span class="footer-left"><span class="footer-icon">☢</span> &copy; 2026 — Engineered with precision.</span>
+  <span>OntarioTech University &middot; OPG Intern &middot; Energy &amp; Fintech</span>
+</footer>
 
+<script>
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    const subject = encodeURIComponent('Portfolio Contact from ' + name);
+    const body = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
+    window.location.href = 'mailto:huzaifa.farhan042@gmail.com?subject=' + subject + '&body=' + body;
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = '[ Transmission Confirmed ✓ ]';
+    btn.style.background = 'transparent';
+    btn.style.color = 'var(--teal)';
+    btn.style.outline = '1px solid var(--teal)';
+    btn.disabled = true;
+  }
+
+  const gaugeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.gauge-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const aboutSection = document.querySelector('#about');
+  if (aboutSection) gaugeObserver.observe(aboutSection);
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.project-card, .skill-item, .contact-link').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, box-shadow 0.2s';
+    revealObserver.observe(el);
+  });
+</script>
 </body>
 </html>
