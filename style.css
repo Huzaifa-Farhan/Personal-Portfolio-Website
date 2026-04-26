@@ -1,115 +1,102 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
-
-:root {
-  --primary: #6366f1;
-  --dark: #0f172a;
-  --card: rgba(255,255,255,0.05);
-}
-
 body {
+  background: radial-gradient(circle at top, #1e293b, #020617);
+  color: #e2e8f0;
   font-family: 'Karla', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: white;
 }
 
 /* NAVBAR */
 header {
+  background: rgba(0,0,0,0.4);
   backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.5) !important;
 }
 
 /* HERO */
-#main-content {
-  height: 100vh;
+#hero {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-#shifter-text {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(12px);
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.hero-title span {
+  color: #10b981;
+}
+
+.hero-subtitle {
+  color: #94a3b8;
+}
+
+.hero-img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+
+  clip-path: polygon(
+    25% 5%, 75% 5%,
+    100% 50%,
+    75% 95%, 25% 95%,
+    0% 50%
+  );
+
+  border: 3px solid #10b981;
+  box-shadow: 0 0 40px rgba(16,185,129,0.4);
+}
+
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.03);
   border-radius: 20px;
-  padding: 30px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: 0.3s;
 }
 
-.name-header {
-  font-size: 70px;
-  color: var(--primary);
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(16,185,129,0.2);
 }
 
-/* PROFILE IMAGE */
-#myPicture {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
+/* ICON */
+.icon {
+  font-size: 30px;
+  color: #10b981;
+  margin-bottom: 10px;
 }
 
-/* BUTTON */
+/* PROJECT IMAGES */
+#portfolio img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* BUTTONS */
 .btn-primary {
-  background: var(--primary);
+  background: #10b981;
   border: none;
-  border-radius: 30px;
 }
 
 .btn-outline-primary {
-  border-radius: 30px;
-}
-
-/* ABOUT CARDS */
-#skills .card {
-  background: var(--card);
-  border: none;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  color: white;
-  transition: 0.3s;
-}
-
-#skills .card:hover {
-  transform: translateY(-10px);
-}
-
-/* PROJECT CARDS */
-#portfolio .card {
-  background: #111827;
-  border: none;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-#portfolio .card:hover {
-  transform: scale(1.05);
-}
-
-#portfolio img {
-  height: 180px;
-  object-fit: cover;
+  border-color: #10b981;
+  color: #10b981;
 }
 
 /* CONTACT */
 #contact {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding: 80px 0;
 }
 
-.form-control {
-  border-radius: 10px;
-}
-
-/* SOCIAL ICONS */
+/* SOCIALS */
 .social-icons a {
-  background: var(--primary) !important;
-  transition: 0.3s;
+  margin-right: 15px;
+  color: #94a3b8;
+  font-size: 20px;
 }
 
 .social-icons a:hover {
-  transform: scale(1.2);
-}
-
-/* FOOTER */
-footer {
-  color: #aaa;
+  color: #10b981;
 }
