@@ -5,189 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Huzaifa Farhan</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
 </head>
 
 <body>
 
-<!-- NAV -->
-<header class="nav">
-  <div class="nav-inner">
-    <h3>Huzaifa</h3>
-    <div>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+<!-- NAVBAR -->
+<header class="fixed-top">
+  <nav class="container navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand fw-bold">Huzaifa Farhan</a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#skills">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
 </header>
 
-<div style="height:80px;"></div>
-
 <!-- HERO -->
-<section class="hero">
-  <div>
-    <img src="images/home.PNG" class="hero-img">
+<section id="hero">
+  <div class="container">
+    <div class="row align-items-center">
 
-    <h1>Huzaifa Farhan</h1>
-    <p class="subtitle">Software Engineer • Problem Solver • Builder</p>
+      <div class="col-lg-6 text-center text-lg-start">
+        <h1 class="hero-title">Hi, I'm <span>Huzaifa Farhan</span></h1>
 
-    <div class="hero-buttons">
-      <a href="#projects" class="btn primary">View Work</a>
-      <a href="images/Main Resume.pdf" class="btn ghost" target="_blank">Resume</a>
-    </div>
+        <p class="hero-subtitle">
+          Software Engineering Student building clean, user-focused applications.
+        </p>
 
-    <div class="socials">
-      <a href="https://github.com/Huzaifa-Farhan" target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/huzaifafarhan17/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <div class="mt-4">
+          <a href="#skills" class="btn btn-primary me-3">About Me</a>
+          <a href="#portfolio" class="btn btn-outline-primary">Projects</a>
+        </div>
+
+        <div class="social-icons mt-4">
+          <a href="https://github.com/Huzaifa-Farhan"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/huzaifafarhan17/"><i class="fab fa-linkedin"></i></a>
+          <a href="images/Main Resume.pdf"><i class="fa fa-file"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 text-center mt-5 mt-lg-0">
+        <img src="images/home.PNG" class="hero-img">
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="section">
+<section id="skills" class="container text-center">
   <h2>About Me</h2>
-  <p class="section-text">
-    Software Engineering student focused on building scalable applications and solving real-world problems through code.
+  <p class="subtitle">
+    Software Engineering student at OntarioTech University with experience in development, problem-solving, and teamwork.
   </p>
 
-  <div class="cards">
-    <div class="glass-card">
-      <h3>Frontend</h3>
-      <p>React, JavaScript, UI/UX</p>
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="card p-4">
+        <i class="fa fa-code icon"></i>
+        <h4>Frontend</h4>
+        <p>HTML, CSS, JavaScript, React</p>
+      </div>
     </div>
-    <div class="glass-card">
-      <h3>Backend</h3>
-      <p>Python, Java, C++, APIs</p>
+
+    <div class="col-md-4">
+      <div class="card p-4">
+        <i class="fa fa-server icon"></i>
+        <h4>Backend</h4>
+        <p>Python, Java, C++, MySQL</p>
+      </div>
     </div>
-    <div class="glass-card">
-      <h3>Leadership</h3>
-      <p>Team management & execution</p>
+
+    <div class="col-md-4">
+      <div class="card p-4">
+        <i class="fa fa-users icon"></i>
+        <h4>Leadership</h4>
+        <p>Project management & teamwork</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section">
+<section id="portfolio" class="container text-center">
   <h2>Projects</h2>
+  <p class="subtitle">A collection of projects I have worked on.</p>
 
-  <div class="projects">
+  <div class="row mt-5 g-4">
 
-    <!-- Repeatable Card -->
-    
-    <div class="project-card">
-      <img src="images/pathfinding.png">
-      <div class="project-info">
-        <h4>Pathfinding Visualizer</h4>
-        <p>HTML • JS • Node</p>
-        <a href="https://github.com/Huzaifa-Farhan/Pathfinding-Visualizer" target="_blank">Code</a>
-        <a href="https://pathfinding-visualizer-gcim.onrender.com/" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/pathfinding.png">
+        <h6>Dijkstra's Pathfinding Visualizer</h6>
+        <p>HTML - NodeJS - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Pathfinding-Visualizer" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://pathfinding-visualizer-gcim.onrender.com/" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/typing.PNG">
-      <div class="project-info">
-        <h4>Typing Game</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/Typing-Game" target="_blank">Code</a>
-        <a href="https://typing-game-hhiq.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/typing.PNG">
+        <h6>Typing Game</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Typing-Game" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://typing-game-hhiq.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/weatherApp.PNG">
-      <div class="project-info">
-        <h4>Weather App</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/Weather-App" target="_blank">Code</a>
-        <a href="https://weather-app-hbqs.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/weatherApp.PNG">
+        <h6>Weather App</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Weather-App" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://weather-app-hbqs.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/chess.PNG">
-      <div class="project-info">
-        <h4>Chess Game</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/Chess-Game" target="_blank">Code</a>
-        <a href="https://chess-game-6grn.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/chess.PNG">
+        <h6>Chess Game</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Chess-Game" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://chess-game-6grn.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/sudoku.png">
-      <div class="project-info">
-        <h4>Sudoku Solver</h4>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/sudoku.png">
+        <h6>Sudoku Solver</h6>
         <p>Python</p>
-        <a href="https://github.com/Huzaifa-Farhan/Sudoku-Solver" target="_blank">Code</a>
-        <a href="https://drive.google.com/file/d/1k1bFonletMLnLeIWIxTgQhRBPQfOBnhA/view" target="_blank">Demo</a>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Sudoku-Solver" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://drive.google.com/file/d/1k1bFonletMLnLeIWIxTgQhRBPQfOBnhA/view" class="btn btn-outline-primary btn-sm">Demo</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/arduino.PNG">
-      <div class="project-info">
-        <h4>Arduino Temp Tester</h4>
-        <p>Python • Arduino</p>
-        <a href="https://github.com/Huzaifa-Farhan/Arduino-Temp-Test" target="_blank">Code</a>
-        <a href="https://drive.google.com/file/d/1OjMVCzuW2jWsTvXbtHIr9YmcC_zr1NG1/view" target="_blank">Demo</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/arduino.PNG">
+        <h6>Arduino Temperature Tester</h6>
+        <p>Python - Arduino</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Arduino-Temp-Test" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://drive.google.com/file/d/1OjMVCzuW2jWsTvXbtHIr9YmcC_zr1NG1/view" class="btn btn-outline-primary btn-sm">Demo</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/imagetotext.PNG">
-      <div class="project-info">
-        <h4>Image To Text</h4>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/imagetotext.PNG">
+        <h6>Image To Text</h6>
         <p>Python</p>
-        <a href="https://github.com/Huzaifa-Farhan/Image-To-Text" target="_blank">Code</a>
-        <a href="https://drive.google.com/file/d/1DQQ-ideIyoLKBGpqecO8Vv907XBnKz5C/view" target="_blank">Demo</a>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Image-To-Text" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://drive.google.com/file/d/1DQQ-ideIyoLKBGpqecO8Vv907XBnKz5C/view" class="btn btn-outline-primary btn-sm">Demo</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/pingpong.PNG">
-      <div class="project-info">
-        <h4>Ping Pong</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/Ping-Pong" target="_blank">Code</a>
-        <a href="https://ping-pong-ttwz.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/pingpong.PNG">
+        <h6>Ping Pong Game</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Ping-Pong" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://ping-pong-ttwz.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/sliding.PNG">
-      <div class="project-info">
-        <h4>Sliding Puzzle</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/Sliding-Puzzle-Game" target="_blank">Code</a>
-        <a href="https://sliding-puzzle-game.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/sliding.PNG">
+        <h6>Sliding Puzzle Game</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Sliding-Puzzle-Game" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://sliding-puzzle-game.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/excel.PNG">
-      <div class="project-info">
-        <h4>Web Scraper</h4>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/excel.PNG">
+        <h6>Web Scraper</h6>
         <p>Python</p>
-        <a href="https://github.com/Huzaifa-Farhan/Web-Scraper" target="_blank">Code</a>
-        <a href="https://drive.google.com/file/d/1P_VAKDkQ-cuwscxOBTzJwJav8I0nay1n/view" target="_blank">Demo</a>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/Web-Scraper" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://drive.google.com/file/d/1P_VAKDkQ-cuwscxOBTzJwJav8I0nay1n/view" class="btn btn-outline-primary btn-sm">Demo</a>
+        </div>
       </div>
     </div>
 
-    <div class="project-card">
-      <img src="images/todo.PNG">
-      <div class="project-info">
-        <h4>To-Do App</h4>
-        <p>HTML • CSS • JS</p>
-        <a href="https://github.com/Huzaifa-Farhan/To-Do-List" target="_blank">Code</a>
-        <a href="https://to-do-list-3pes.onrender.com" target="_blank">Live</a>
+    <!-- PROJECT -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="card p-3 h-100">
+        <img src="images/todo.PNG">
+        <h6>To-Do List App</h6>
+        <p>HTML - CSS - JavaScript</p>
+        <div>
+          <a href="https://github.com/Huzaifa-Farhan/To-Do-List" class="btn btn-primary btn-sm">GitHub</a>
+          <a href="https://to-do-list-3pes.onrender.com" class="btn btn-outline-primary btn-sm">Live</a>
+        </div>
       </div>
     </div>
 
@@ -195,24 +254,28 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
+<section id="contact" class="text-center">
+  <h2>Contact Me</h2>
 
-  <form action="https://formspree.io/f/mvgpqepa" method="POST" class="contact-form">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message"></textarea>
-    <button type="submit" class="btn primary">Send</button>
+  <form action="https://formspree.io/f/mvgpqepa" method="POST" class="container mt-4">
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <input type="text" name="name" placeholder="Name" class="form-control" required>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <input type="email" name="email" placeholder="Email" class="form-control" required>
+      </div>
+    </div>
+
+    <textarea name="message" placeholder="Message" class="form-control mb-3" required></textarea>
+
+    <button class="btn btn-primary">Send</button>
   </form>
 </section>
 
-<footer class="footer">
-  <p>© <span id="year"></span> Huzaifa Farhan</p>
-</footer>
-
-<script>
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
